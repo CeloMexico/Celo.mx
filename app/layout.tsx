@@ -1,41 +1,40 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import dynamic from 'next/dynamic';
-const Providers = dynamic(() => import('@/components/Providers'), { ssr: false });
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { Providers } from '@/components/Providers'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-body' });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CELO Mexico',
-  description: 'Celo Mexico: el hub para builders y comunidad.',
+  title: 'CELO Mexico - El hub para builders y comunidad en México',
+  description: 'Únete a la comunidad CELO en México. Construye dApps, aprende sobre blockchain y conecta con otros builders.',
+  keywords: ['CELO', 'blockchain', 'México', 'dApps', 'cryptocurrency', 'DeFi'],
+  authors: [{ name: 'CELO Mexico' }],
   openGraph: {
-    title: 'CELO Mexico',
-    description: 'Celo Mexico: el hub para builders y comunidad.',
+    title: 'CELO Mexico - El hub para builders y comunidad en México',
+    description: 'Únete a la comunidad CELO en México. Construye dApps, aprende sobre blockchain y conecta con otros builders.',
     type: 'website',
-    url: 'https://celo-mexico.local',
+    locale: 'es_MX',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CELO Mexico',
-    description: 'Celo Mexico: el hub para builders y comunidad.',
+    title: 'CELO Mexico - El hub para builders y comunidad en México',
+    description: 'Únete a la comunidad CELO en México. Construye dApps, aprende sobre blockchain y conecta con otros builders.',
   },
-};
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`theme-yellow ${inter.variable} min-h-screen antialiased celo-bg celo-text`} style={{ ['--font-display' as any]: 'GT Alpina Trial Fine, ui-serif, system-ui' }}>        
+      <body className={inter.className}>
         <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1 overflow-x-hidden">{children}</main>
-            <Footer />
-          </div>
+          {children}
         </Providers>
       </body>
     </html>
-  );
+  )
 }
