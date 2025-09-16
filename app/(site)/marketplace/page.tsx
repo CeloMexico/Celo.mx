@@ -1,5 +1,8 @@
 'use client';
 import { useState, useRef } from 'react';
+
+// Force dynamic rendering to avoid Privy issues during build
+export const dynamic = 'force-dynamic';
 import { featuredCollection, featuredAssets, upcoming } from './data';
 import CollectionHero from '@/components/marketplace/CollectionHero';
 import AssetGrid from '@/components/marketplace/AssetGrid';

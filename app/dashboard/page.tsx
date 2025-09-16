@@ -1,5 +1,8 @@
 'use client';
 import { usePrivy } from '@privy-io/react-auth';
+
+// Force dynamic rendering to avoid Privy issues during build
+export const dynamic = 'force-dynamic';
 import Section from '@/components/Section';
 import { useEffect, useState } from 'react';
 import { getAddress, createPublicClient, http, Chain } from 'viem';

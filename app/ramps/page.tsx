@@ -1,6 +1,9 @@
 import Section from '@/components/Section';
 import RampLauncher from '@/components/RampLauncher';
 
+// Force dynamic rendering to avoid Privy issues during build
+export const dynamic = 'force-dynamic';
+
 export default function RampsPage() {
   return (
     <div className="space-y-16 pb-24">

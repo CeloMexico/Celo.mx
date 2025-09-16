@@ -1,5 +1,8 @@
 import { FundingGuideToggle } from "@/components/academy/FundingGuideToggle";
 
+// Force dynamic rendering to avoid Privy issues during build
+export const dynamic = 'force-dynamic';
+
 export default function DemoTogglePage() {
   return (
     <div className="min-h-screen bg-gray-50 py-12">

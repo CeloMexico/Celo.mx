@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+
+// Force dynamic rendering to avoid Privy issues during build
+export const dynamic = 'force-dynamic';
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { BookOpen, Search } from "lucide-react";
