@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 
 // Force dynamic rendering to avoid Privy issues during build
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ import Link from "next/link";
 import { COURSES } from "@/data/academy";
 import { FilterState } from "@/components/academy/types";
 
-export default function AcademyPage() {
+function AcademyPageContent() {
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterState>({
     q: "",
@@ -296,5 +296,33 @@ export default function AcademyPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function AcademyPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto mb-8"></div>
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="bg-white rounded-lg p-6">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-3 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div className="h-20 bg-gray-200 rounded"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }>
+      <AcademyPageContent />
+    </Suspense>
   );
 }
